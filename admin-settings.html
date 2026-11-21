@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings | Admin | Selah Naija</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23241044'/%3E%3Crect x='47' y='14' width='6' height='72' rx='3' fill='%23D6AD55'/%3E%3Crect x='40' y='32' width='20' height='6' rx='3' fill='%23D6AD55'/%3E%3C/svg%3E">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="brand.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body class="admin-body" data-admin="settings">
+
+  <div id="admin-gate" class="admin-gate">
+    <div>
+      <div class="spinner-border text-primary mb-3" role="status"></div>
+      <p class="text-muted mb-0">Checking access...</p>
+    </div>
+  </div>
+
+  <div id="admin-shell" hidden>
+    <aside id="admin-sidebar" class="admin-sidebar"></aside>
+    <div class="admin-backdrop" id="admin-backdrop" hidden></div>
+
+    <div class="admin-main">
+      <header id="admin-top" class="admin-top"></header>
+
+      <main class="admin-content">
+        <div class="mb-3">
+          <h1 class="h3 mb-0">Website settings</h1>
+          <p class="text-muted mb-0">Changes appear on the public website straight away.</p>
+        </div>
+
+        <form id="settings-form" novalidate>
+          <div id="form-error"></div>
+
+          <div class="card admin-card mb-4">
+            <div class="card-body">
+              <h2 class="h5 mb-3">Branding and homepage text</h2>
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="s-site-name">Website name</label><input
+                    class="form-control" id="s-site-name" maxlength="60" placeholder="Selah Naija"></div>
+                <div class="col-md-6"><label class="form-label" for="s-tagline">Tagline</label><input
+                    class="form-control" id="s-tagline" maxlength="80"
+                    placeholder="Nigerian Gospel Music &amp; Sermons"></div>
+                <div class="col-12"><label class="form-label" for="s-hero-headline">Homepage headline</label><input
+                    class="form-control" id="s-hero-headline" maxlength="140"
+                    placeholder="Your Home for Nigerian Gospel Music and Inspiring Messages."></div>
+                <div class="col-12"><label class="form-label" for="s-hero-text">Homepage description</label><textarea
+                    class="form-control" id="s-hero-text" rows="2" maxlength="300"></textarea></div>
+              </div>
+              <div class="meta mt-2">Leave a box empty to keep the original text.</div>
+            </div>
+          </div>
+
+          <div class="card admin-card mb-4">
+            <div class="card-body">
+              <h2 class="h5 mb-3">Announcement banner</h2>
+              <div class="form-check form-switch mb-3"><input class="form-check-input" type="checkbox"
+                  id="s-ann-on"><label class="form-check-label" for="s-ann-on">Show the banner at the top of every
+                  page</label></div>
+              <div class="row g-3">
+                <div class="col-12"><label class="form-label" for="s-ann-text">Message</label><input
+                    class="form-control" id="s-ann-text" maxlength="200" placeholder="New releases every Friday!"></div>
+                <div class="col-md-5"><label class="form-label" for="s-ann-link-text">Link text (optional)</label><input
+                    class="form-control" id="s-ann-link-text" maxlength="40" placeholder="Listen now"></div>
+                <div class="col-md-7"><label class="form-label" for="s-ann-link-url">Link address
+                    (optional)</label><input class="form-control" id="s-ann-link-url" maxlength="300"
+                    placeholder="https://... or latest.html"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card admin-card mb-4">
+            <div class="card-body">
+              <h2 class="h5 mb-3">Social media links</h2>
+              <div class="meta mb-2">Shown in the footer. Icons with no link are hidden.</div>
+              <div class="row g-3" id="social-fields"></div>
+            </div>
+          </div>
+
+          <div class="card admin-card mb-4">
+            <div class="card-body">
+              <h2 class="h5 mb-3">Contact details</h2>
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="s-email">Contact email</label><input type="email"
+                    class="form-control" id="s-email" maxlength="120"></div>
+                <div class="col-md-6"><label class="form-label" for="s-phone">Phone / WhatsApp number</label><input
+                    class="form-control" id="s-phone" maxlength="30" placeholder="+234 800 000 0000"></div>
+              </div>
+              <div class="meta mt-2">These will be used on the Contact page.</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg px-5" type="submit">Save settings</button>
+        </form>
+
+        <div class="card admin-card mt-4">
+          <div class="card-body">
+            <h2 class="h5">Sitemap for search engines</h2>
+            <p class="text-muted small">Creates a sitemap.xml listing every published song, sermon, artist and page, so
+              Google and others can find them. Run it after your website is online, and again after you add lots of new
+              content.</p>
+            <div class="row g-2 align-items-end">
+              <div class="col-md-8"><label class="form-label" for="sm-base">Your live website address</label><input
+                  class="form-control" id="sm-base" placeholder="https://your-site.vercel.app"></div>
+              <div class="col-md-4"><button type="button" class="btn btn-outline-primary w-100" id="sm-generate"><i
+                    class="bi bi-diagram-3 me-1"></i>Generate sitemap.xml</button></div>
+            </div>
+            <div class="meta mt-2" id="sm-result"></div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="supabase.js"></script>
+  <script src="utils.js"></script>
+  <script src="auth.js"></script>
+  <script src="admin.js"></script>
+  <script src="admin-settings.js"></script>
+  <script src="admin-sitemap.js"></script>
+</body>
+
+</html>

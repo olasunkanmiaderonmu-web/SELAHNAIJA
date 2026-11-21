@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artist | Selah Naija</title>
+  <meta name="description" content="Nigerian gospel artist on Selah Naija.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23241044'/%3E%3Crect x='47' y='14' width='6' height='72' rx='3' fill='%23D6AD55'/%3E%3Crect x='40' y='32' width='20' height='6' rx='3' fill='%23D6AD55'/%3E%3C/svg%3E">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="brand.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body data-page="artists">
+
+  <header id="site-header"></header>
+
+  <main>
+    <section class="page-hero artist-hero" id="artist-hero">
+      <div class="container">
+        <div class="text-center py-4"><div class="spinner-border spinner-border-sm me-2" role="status"></div>Loading...</div>
+      </div>
+    </section>
+
+    <section class="section" id="sec-popular" hidden>
+      <div class="container">
+        <div class="section-head"><div><h2 id="popular-title">Popular songs</h2></div></div>
+        <div class="row g-4" id="popular-songs"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="sec-latest" hidden>
+      <div class="container">
+        <div class="section-head"><div><h2>Latest releases</h2></div></div>
+        <div class="row g-4" id="latest-songs"></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec-albums" hidden>
+      <div class="container">
+        <div class="section-head"><div><h2>Albums</h2><p class="text-muted mb-0">Choose an album to see its songs.</p></div></div>
+        <div class="row g-4" id="album-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="sec-all" hidden>
+      <div class="container">
+        <div class="section-head">
+          <div><h2 id="all-title">All songs</h2><div id="album-filter" class="mt-1"></div></div>
+          <select id="filter-sort" class="form-select w-auto" aria-label="Sort songs"></select>
+        </div>
+        <div class="row g-4" id="all-songs"></div>
+        <nav id="pager" class="mt-5" aria-label="Pages"></nav>
+      </div>
+    </section>
+
+    <section class="section" id="sec-related" hidden>
+      <div class="container">
+        <div class="section-head"><div><h2>You may also like</h2><p class="text-muted mb-0">More gospel artists to discover.</p></div>
+          <a href="artists.html" class="link-more">All artists <i class="bi bi-arrow-right"></i></a></div>
+        <div class="row g-4" id="related-artists"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <div id="site-player"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="supabase.js"></script>
+  <script src="utils.js"></script>
+  <script src="layout.js"></script>
+  <script src="player.js"></script>
+  <script src="songs.js"></script>
+  <script src="seo.js"></script>
+  <script src="artist.js"></script>
+</body>
+</html>

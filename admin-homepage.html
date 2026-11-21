@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homepage | Admin | Selah Naija</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23241044'/%3E%3Crect x='47' y='14' width='6' height='72' rx='3' fill='%23D6AD55'/%3E%3Crect x='40' y='32' width='20' height='6' rx='3' fill='%23D6AD55'/%3E%3C/svg%3E">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="brand.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body class="admin-body" data-admin="homepage">
+
+  <div id="admin-gate" class="admin-gate">
+    <div><div class="spinner-border text-primary mb-3" role="status"></div><p class="text-muted mb-0">Checking access...</p></div>
+  </div>
+
+  <div id="admin-shell" hidden>
+    <aside id="admin-sidebar" class="admin-sidebar"></aside>
+    <div class="admin-backdrop" id="admin-backdrop" hidden></div>
+
+    <div class="admin-main">
+      <header id="admin-top" class="admin-top"></header>
+
+      <main class="admin-content">
+        <div class="mb-3"><h1 class="h3 mb-0">Homepage content</h1><p class="text-muted mb-0">Choose what visitors see first. Only published songs and sermons are shown on the website.</p></div>
+
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card admin-card"><div class="card-body">
+              <h2 class="h5"><i class="bi bi-sun text-warning me-1"></i>Song of the Day</h2>
+              <p class="text-muted small">Pick a song and the day it should be featured. On that day it appears at the top of the homepage. A song can have one date at a time.</p>
+              <div class="row g-2 align-items-start mb-3">
+                <div class="col-md-6 picker"><input class="form-control" id="sotd-search" placeholder="Search for a published song" autocomplete="off" aria-label="Search for a song"><div class="list-group" id="sotd-list" hidden></div></div>
+                <div class="col-6 col-md-3"><input type="date" class="form-control" id="sotd-date" aria-label="Date"></div>
+                <div class="col-6 col-md-3"><button class="btn btn-primary w-100" id="sotd-add" disabled>Schedule</button></div>
+              </div>
+              <div class="meta mb-2" id="sotd-chosen"></div>
+              <div id="sotd-schedule"></div>
+            </div></div>
+          </div>
+
+          <div class="col-lg-6"><div class="card admin-card h-100"><div class="card-body">
+            <h2 class="h5">Featured Music</h2><p class="text-muted small">Shown in “Featured Music” on the homepage.</p>
+            <div class="picker mb-3"><input class="form-control" id="fs-search" placeholder="Search for a published song to feature" autocomplete="off" aria-label="Search songs"><div class="list-group" id="fs-list" hidden></div></div>
+            <div id="fs-items"></div>
+          </div></div></div>
+
+          <div class="col-lg-6"><div class="card admin-card h-100"><div class="card-body">
+            <h2 class="h5">Sermons of the Week</h2><p class="text-muted small">Featured sermons are shown first on the homepage.</p>
+            <div class="picker mb-3"><input class="form-control" id="fm-search" placeholder="Search for a published sermon to feature" autocomplete="off" aria-label="Search sermons"><div class="list-group" id="fm-list" hidden></div></div>
+            <div id="fm-items"></div>
+          </div></div></div>
+
+          <div class="col-lg-6"><div class="card admin-card h-100"><div class="card-body">
+            <h2 class="h5">Popular Artists</h2><p class="text-muted small">Featured artists are shown first in “Popular Nigerian Gospel Artists”.</p>
+            <div class="picker mb-3"><input class="form-control" id="fa-search" placeholder="Search for an artist to feature" autocomplete="off" aria-label="Search artists"><div class="list-group" id="fa-list" hidden></div></div>
+            <div id="fa-items"></div>
+          </div></div></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="supabase.js"></script>
+  <script src="utils.js"></script>
+  <script src="auth.js"></script>
+  <script src="admin.js"></script>
+  <script src="admin-homepage.js"></script>
+</body>
+</html>

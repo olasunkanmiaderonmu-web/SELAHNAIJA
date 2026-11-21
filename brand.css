@@ -1,0 +1,48 @@
+/* Selah Naija - brand colours + Bootstrap 5 overrides. Load AFTER bootstrap.css */
+:root {
+  --bg: #FFFFFF;
+  --navbar: #241044;
+  --primary: #6C35A5;
+  --primary-hover: #512580;
+  --gold: #D6AD55;
+  --text: #17151C;
+  --text-muted: #77717F;
+  --player: #241044;
+  --footer: #17151C;
+  --card: #F7F5FA;
+
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-secondary-color: var(--text-muted);
+  --bs-primary: var(--primary);
+  --bs-primary-rgb: 108, 53, 165;
+  --bs-link-color: var(--primary);
+  --bs-link-hover-color: var(--primary-hover);
+}
+h1, h2, h3, .brand-serif { font-family: Georgia, "Times New Roman", serif; }
+.text-muted, .text-secondary { color: var(--text-muted) !important; }
+.text-gold { color: var(--gold) !important; }
+
+.navbar-selah { background: var(--navbar); }
+.navbar-selah .nav-link { color: #fff; }
+.navbar-selah .nav-link:hover, .navbar-selah .nav-link.active { color: var(--gold); }
+
+.btn-primary {
+  --bs-btn-bg: var(--primary); --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary-hover); --bs-btn-hover-border-color: var(--primary-hover);
+  --bs-btn-active-bg: var(--primary-hover); --bs-btn-active-border-color: var(--primary-hover);
+  --bs-btn-focus-shadow-rgb: 108, 53, 165;
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--primary); --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary); --bs-btn-hover-border-color: var(--primary);
+  --bs-btn-active-bg: var(--primary-hover); --bs-btn-active-border-color: var(--primary-hover);
+}
+.btn-gold { background: var(--gold); border-color: var(--gold); color: var(--navbar); font-weight: 600; }
+.btn-gold:hover { filter: brightness(.94); color: var(--navbar); }
+
+.card-selah { background: var(--card); border: 0; border-radius: 1rem; transition: transform .2s, box-shadow .2s; }
+.card-selah:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(36,16,68,.15); }
+
+.player-bar { background: var(--player); color: #fff; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1030; border-top: 2px solid var(--gold); }
+.footer-selah { background: var(--footer); color: #fff; }

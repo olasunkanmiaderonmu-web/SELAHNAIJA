@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search | Selah Naija</title>
+  <meta name="description" content="Search Nigerian gospel songs, artists, albums, sermons and preachers on Selah Naija.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23241044'/%3E%3Crect x='47' y='14' width='6' height='72' rx='3' fill='%23D6AD55'/%3E%3Crect x='40' y='32' width='20' height='6' rx='3' fill='%23D6AD55'/%3E%3C/svg%3E">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="brand.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body data-page="search">
+
+  <header id="site-header"></header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="mb-3">Search</h1>
+        <form id="search-form" class="search-hero-form" role="search">
+          <div class="input-group input-group-lg">
+            <input type="search" id="search-input" name="q" class="form-control" data-suggest maxlength="100"
+                   placeholder="Search songs, artists, albums, sermons, preachers, topics..." aria-label="Search">
+            <button class="btn btn-gold px-4" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="pill-row" id="type-tabs"></div>
+
+        <div class="filter-bar">
+          <div class="d-flex flex-wrap gap-2">
+            <div id="wrap-cat"><select id="filter-category" class="form-select" aria-label="Filter by category"></select></div>
+            <div id="wrap-artist"><select id="filter-artist" class="form-select" aria-label="Filter by artist"></select></div>
+            <div><select id="filter-sort" class="form-select" aria-label="Sort results"></select></div>
+          </div>
+          <span class="text-muted small">Sorting applies to songs and sermons. Other results are listed A–Z.</span>
+        </div>
+
+        <div id="results"></div>
+        <nav id="pager" class="mt-5" aria-label="Pages"></nav>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <div id="site-player"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="supabase.js"></script>
+  <script src="utils.js"></script>
+  <script src="layout.js"></script>
+  <script src="player.js"></script>
+  <script src="songs.js"></script>
+  <script src="sermon-helpers.js"></script>
+  <script src="seo.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

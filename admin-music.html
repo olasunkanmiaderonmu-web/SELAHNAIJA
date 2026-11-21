@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Music | Admin | Selah Naija</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23241044'/%3E%3Crect x='47' y='14' width='6' height='72' rx='3' fill='%23D6AD55'/%3E%3Crect x='40' y='32' width='20' height='6' rx='3' fill='%23D6AD55'/%3E%3C/svg%3E">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="brand.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body class="admin-body" data-admin="music" data-kind="song">
+
+  <div id="admin-gate" class="admin-gate">
+    <div><div class="spinner-border text-primary mb-3" role="status"></div><p class="text-muted mb-0">Checking access...</p></div>
+  </div>
+
+  <div id="admin-shell" hidden>
+    <aside id="admin-sidebar" class="admin-sidebar"></aside>
+    <div class="admin-backdrop" id="admin-backdrop" hidden></div>
+
+    <div class="admin-main">
+      <header id="admin-top" class="admin-top"></header>
+
+      <main class="admin-content">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <div><h1 class="h3 mb-0">Music</h1><p class="text-muted mb-0">Upload, publish and manage songs.</p></div>
+          <button class="btn btn-primary" id="add-content"><i class="bi bi-cloud-arrow-up me-1"></i>Upload song</button>
+        </div>
+
+        <div class="card admin-card"><div class="card-body">
+          <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+            <input type="search" id="search" class="form-control admin-search" placeholder="Search by title or artist" aria-label="Search songs">
+            <select id="filter-status" class="form-select w-auto" aria-label="Filter by status">
+              <option value="">All statuses</option><option value="published">Published</option><option value="draft">Draft</option>
+            </select>
+            <select id="filter-category" class="form-select w-auto" aria-label="Filter by category"></select>
+            <span class="ms-auto text-muted" id="count"></span>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead><tr><th style="width:56px"></th><th>Song</th><th class="d-none d-lg-table-cell">Category</th><th>Status</th><th class="d-none d-md-table-cell">Plays / downloads</th><th class="d-none d-xl-table-cell">Added</th><th class="text-end">Actions</th></tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <nav id="pager" aria-label="Pages"></nav>
+        </div></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Upload / edit song -->
+  <div class="modal fade" id="content-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable"><div class="modal-content">
+      <form id="content-form" novalidate>
+        <div class="modal-header"><h2 class="modal-title h5" id="modal-title">Upload song</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-body">
+          <div id="form-error"></div>
+          <div class="row g-3">
+            <div class="col-md-7"><label class="form-label" for="c-title">Song title *</label><input class="form-control" id="c-title" maxlength="200" required></div>
+            <div class="col-md-5"><label class="form-label" for="c-slug">Web address (slug)</label><input class="form-control" id="c-slug" maxlength="220" placeholder="made-from-the-title"></div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="c-person">Artist *</label>
+              <div class="input-group">
+                <select class="form-select" id="c-person"></select>
+                <button class="btn btn-outline-primary" type="button" id="new-person-toggle" title="Add a new artist"><i class="bi bi-plus-lg"></i> New</button>
+              </div>
+              <div class="input-group mt-2" id="new-person-row" hidden>
+                <input class="form-control" id="new-person-name" maxlength="120" placeholder="New artist's name" aria-label="New artist's name">
+                <button class="btn btn-primary" type="button" id="new-person-save">Add</button>
+              </div>
+            </div>
+            <div class="col-md-6"><label class="form-label" for="c-featured-artist">Featured artist (optional)</label><input class="form-control" id="c-featured-artist" maxlength="200"></div>
+
+            <div class="col-md-6"><label class="form-label" for="c-album">Album (optional)</label><input class="form-control" id="c-album" list="album-list" maxlength="200" autocomplete="off">
+              <datalist id="album-list"></datalist><div class="meta">Pick an existing album, or type a new name to create it.</div></div>
+            <div class="col-md-6"><label class="form-label" for="c-release">Release date</label><input type="date" class="form-control" id="c-release"></div>
+
+            <div class="col-md-6"><label class="form-label" for="c-category">Category</label><select class="form-select" id="c-category"></select></div>
+            <div class="col-md-6"><label class="form-label" for="c-subcategory">Subcategory</label><select class="form-select" id="c-subcategory"></select></div>
+
+            <div class="col-12"><label class="form-label" for="c-description">Description</label><textarea class="form-control" id="c-description" rows="3" maxlength="3000"></textarea></div>
+            <div class="col-12"><label class="form-label" for="c-lyrics">Lyrics (optional)</label><textarea class="form-control" id="c-lyrics" rows="5" maxlength="20000"></textarea>
+              <div class="meta">Only add lyrics you have the right to publish.</div></div>
+
+            <div class="col-12">
+              <label class="form-label d-block">Audio file *</label>
+              <input type="file" class="form-control" id="c-audio" accept=".mp3,.wav,.m4a,audio/mpeg,audio/wav,audio/mp4">
+              <div class="meta mt-1" id="audio-info"></div>
+              <audio id="audio-preview" class="w-100 mt-2" controls hidden></audio>
+            </div>
+            <div class="col-md-4"><label class="form-label" for="c-duration">Duration (seconds)</label><input type="number" class="form-control" id="c-duration" min="0" max="86400">
+              <div class="meta">Filled in automatically.</div></div>
+
+            <div class="col-md-8">
+              <label class="form-label d-block">Cover artwork</label>
+              <div class="d-flex align-items-center gap-3">
+                <div class="cover-preview" id="cover-preview"><i class="bi bi-music-note-beamed"></i></div>
+                <div>
+                  <label class="btn btn-outline-primary btn-sm mb-1" for="c-cover"><i class="bi bi-image me-1"></i>Choose picture</label>
+                  <input type="file" id="c-cover" accept="image/jpeg,image/png,image/webp" hidden>
+                  <button type="button" class="btn btn-outline-danger btn-sm mb-1" id="cover-remove" hidden>Remove</button>
+                  <div class="meta">Square pictures look best. It is resized automatically.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4"><label class="form-label" for="c-status">Status</label>
+              <select class="form-select" id="c-status"><option value="draft">Draft (hidden)</option><option value="published">Published (live)</option></select></div>
+            <div class="col-md-4"><label class="form-label" for="c-featured-date">Daily featured on (optional)</label><input type="date" class="form-control" id="c-featured-date"></div>
+            <div class="col-md-4 d-flex align-items-end"><div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" id="c-featured"><label class="form-check-label" for="c-featured">Show in “Featured Music”</label></div></div>
+          </div>
+
+          <div class="mt-4" id="upload-progress" hidden>
+            <div class="small fw-semibold mb-1" id="upload-label">Uploading...</div>
+            <div class="progress" style="height:1.25rem"><div class="progress-bar progress-bar-striped progress-bar-animated" id="upload-bar" style="width:0%">0%</div></div>
+            <div class="meta mt-1">Please keep this window open until it finishes.</div>
+          </div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Save song</button></div>
+      </form>
+    </div></div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="modal fade" id="stats-modal" tabindex="-1" aria-labelledby="stats-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"><div class="modal-content">
+      <div class="modal-header"><h2 class="modal-title h5 text-truncate" id="stats-title">Statistics</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body" id="stats-body"></div>
+    </div></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="supabase.js"></script>
+  <script src="utils.js"></script>
+  <script src="songs.js"></script>
+  <script src="auth.js"></script>
+  <script src="admin.js"></script>
+  <script src="admin-content.js"></script>
+</body>
+</html>

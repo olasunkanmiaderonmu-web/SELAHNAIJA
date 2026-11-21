@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin
+Disallow: /account.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
+Disallow: /search.html
+Disallow: /report.html
+
+Sitemap: https://YOUR-WEBSITE-ADDRESS/sitemap.xml
